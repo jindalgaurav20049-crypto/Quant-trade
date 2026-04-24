@@ -10,6 +10,7 @@ from fundlens.engine import (
 )
 from fundlens.modes import EntitlementService, Mode
 from fundlens.models import EvaluationContext
+from fundlens.screener import ScreenerRule, apply_screener
 
 
 class TestFundLensEngine(unittest.TestCase):
@@ -67,6 +68,18 @@ class TestEntitlements(unittest.TestCase):
         self.assertFalse(free.can_use_mode(Mode.ADVANCED))
         self.assertTrue(paid.can_use_mode(Mode.ADVANCED))
         self.assertEqual(free.max_compare_funds(Mode.BEGINNER), 2)
+
+
+class TestScreener(unittest.TestCase):
+    def test_apply_screener(self):
+        rows = [
+            {"scheme": "A", "health": 82.0, "expense": 0.9},
+            {"scheme": "B", "health": 68.0, "expense": 1.4},
+            {"scheme": "C", "health": 75.0, "expense": 1.1},
+        ]
+        rules = [ScreenerRule("health", min_value=70), ScreenerRule("expense", max_value=1.2)]
+        result = apply_screener(rows, rules)
+        self.assertEqual(len(result), 2)
 
 
 if __name__ == "__main__":

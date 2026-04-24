@@ -9,6 +9,7 @@ from .models import (
     CalculationMetadata,
 )
 from .engine import evaluate_fund, build_health_score
+from .screener import ScreenerRule, apply_screener
 
 __all__ = [
     "Mode",
@@ -20,4 +21,6 @@ __all__ = [
     "CalculationMetadata",
     "evaluate_fund",
     "build_health_score",
+    "ScreenerRule",
+    "apply_screener",
 ]
