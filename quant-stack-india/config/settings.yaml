@@ -1,0 +1,100 @@
+market:
+  timezone: "Asia/Kolkata"
+  open_time: "09:15"
+  close_time: "15:30"
+  exchange_primary: "NSE"
+  exchange_secondary: "BSE"
+  settlement: "T+1"
+  currency: "INR"
+
+universe:
+  nifty50:
+    - "RELIANCE.NS"
+    - "TCS.NS"
+    - "HDFCBANK.NS"
+    - "ICICIBANK.NS"
+    - "INFY.NS"
+    - "HINDUNILVR.NS"
+    - "BAJFINANCE.NS"
+    - "SBIN.NS"
+    - "BHARTIARTL.NS"
+    - "WIPRO.NS"
+    - "HCLTECH.NS"
+    - "ASIANPAINT.NS"
+    - "MARUTI.NS"
+    - "TITAN.NS"
+    - "SUNPHARMA.NS"
+    - "ULTRACEMCO.NS"
+    - "NESTLEIND.NS"
+    - "AXISBANK.NS"
+    - "KOTAKBANK.NS"
+    - "LT.NS"
+    - "POWERGRID.NS"
+    - "NTPC.NS"
+    - "ONGC.NS"
+    - "COALINDIA.NS"
+    - "TECHM.NS"
+  banknifty:
+    - "HDFCBANK.NS"
+    - "ICICIBANK.NS"
+    - "KOTAKBANK.NS"
+    - "AXISBANK.NS"
+    - "SBIN.NS"
+    - "INDUSINDBK.NS"
+    - "BANKBARODA.NS"
+    - "PNB.NS"
+  nifty_midcap:
+    - "PERSISTENT.NS"
+    - "MPHASIS.NS"
+    - "DIXON.NS"
+    - "TATAELXSI.NS"
+    - "MAXHEALTH.NS"
+  indices:
+    - "^NSEI"
+    - "^BSESN"
+    - "^NSEBANK"
+    - "^INDIAVIX"
+
+strategies:
+  active:
+    - "momentum_factor_portfolio"
+    - "volatility_targeting"
+    - "cross_sectional_momentum"
+    - "bollinger_bands_reversion"
+    - "pairs_trading"
+    - "fii_dii_flow_strategy"
+
+timeframes:
+  primary: "1d"
+  intraday: "1h"
+  lookback_days: 756
+
+risk:
+  max_position_size: 0.10
+  max_portfolio_drawdown: 0.15
+  volatility_target_annual: 0.15
+  kelly_fraction: 0.25
+  india_vix_reduce_threshold: 20.0
+  india_vix_halt_threshold: 30.0
+  nse_circuit_bands:
+    A_group: 0.20
+    B_group: 0.10
+    T_group: 0.05
+    index_halt: 0.10
+
+execution:
+  broker: "zerodha"
+  mode: "paper"
+  product_type: "CNC"
+  slippage_bps: 10
+  lot_sizes:
+    NIFTY: 75
+    BANKNIFTY: 30
+    FINNIFTY: 65
+
+pipeline:
+  token_refresh_time: "08:00"
+  pre_market_run_time: "09:10"
+  market_run_time: "09:20"
+  eod_run_time: "15:45"
+  rebalance_frequency: "monthly"
